@@ -20,4 +20,8 @@ class CardModel {
       _$CardModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CardModelToJson(this);
+
+  String get imageUrl {
+    return images['small'] ?? '';
+  }
 }
