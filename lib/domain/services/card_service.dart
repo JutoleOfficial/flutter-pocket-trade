@@ -1,16 +1,17 @@
-import 'package:dio/dio.dart';
+import 'package:pocket_trade/core/network/api_client.dart';
 import 'package:pocket_trade/data/models/card_model.dart';
 import 'package:pocket_trade/data/repositories/card_repository.dart';
 
 class CardService {
   CardService() {
-    final dio = Dio();
+    final dio = ApiClient.getInstance();
     cardRepository = CardRepository(dio);
   }
 
   late final CardRepository cardRepository;
 
-  Future<CardModel> getCard(String id) async {
-    return await cardRepository.fetchCardById(id);
+  Future<CardModel?> getCard() async {
+    final cards = await cardRepository.fetchAllCards();
+    return cards.firstOrNull;
   }
 }

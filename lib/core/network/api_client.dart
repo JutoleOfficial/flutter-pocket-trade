@@ -11,15 +11,6 @@ class ApiClient {
     dio.options.receiveTimeout =
         Duration(milliseconds: ApiConstants.receiveTimeout);
 
-    dio.interceptors.addAll([
-      LogInterceptor(
-        requestBody: true,
-        responseBody: true,
-        error: true,
-        request: true,
-      ),
-    ]);
-
     return dio;
   }
 }
