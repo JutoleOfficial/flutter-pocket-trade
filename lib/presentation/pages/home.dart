@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("id:${card?.id}\nname:${card?.name}\nhp:${card?.hp}"),
+        child: Image.network(card?.images['small'] ?? ''),
       ),
     );
   }
