@@ -15,6 +15,48 @@ abstract class BaseTextStyle {
   TextStyle style18Bold();
 }
 
+class AppTextStyle {
+  // 선택된 스타일을 저장할 변수
+  static BaseTextStyle _selectedTextStyle = KoreanTextStyle();
+
+  // 스타일을 설정하는 메서드
+  static void setTextStyle(BaseTextStyle textStyle) {
+    _selectedTextStyle = textStyle;
+  }
+
+  static TextStyle get style11Bold {
+    return _selectedTextStyle.style11Bold();
+  }
+
+  static TextStyle get style11Medium {
+    return _selectedTextStyle.style11Medium();
+  }
+
+  static TextStyle get style13Bold {
+    return _selectedTextStyle.style13Bold();
+  }
+
+  static TextStyle get style13Medium {
+    return _selectedTextStyle.style13Medium();
+  }
+
+  static TextStyle get style15Bold {
+    return _selectedTextStyle.style15Bold();
+  }
+
+  static TextStyle get style15Medium {
+    return _selectedTextStyle.style15Medium();
+  }
+
+  static TextStyle get style18Bold {
+    return _selectedTextStyle.style18Bold();
+  }
+
+  static TextStyle get style18Medium {
+    return _selectedTextStyle.style18Medium();
+  }
+}
+
 class KoreanTextStyle extends BaseTextStyle {
   @override
   TextStyle style11Bold() {
