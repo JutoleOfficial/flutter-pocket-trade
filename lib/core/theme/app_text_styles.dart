@@ -15,12 +15,6 @@ abstract class BaseTextStyle {
   TextStyle style18Bold();
 }
 
-class TextStyleFactory {
-  static BaseTextStyle getStyle() {
-    return KoreanTextStyle();
-  }
-}
-
 class KoreanTextStyle extends BaseTextStyle {
   @override
   TextStyle style11Bold() {
