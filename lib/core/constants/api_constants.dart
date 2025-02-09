@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseUrl = "https://api.pokemontcg.io/v2";
+  static const String baseUrl = "https://api.tcgdex.net/v2/en";
   static const int connectionTimeout = 5000;
   static const int receiveTimeout = 5000;
 

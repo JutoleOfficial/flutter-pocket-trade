@@ -9,8 +9,7 @@ class CardRepository {
 
   Future<CardModel> fetchCardById(String id) async {
     try {
-      final response = await apiService.getCardById(id);
-      return response.data;
+      return await apiService.getCardById(id);
     } catch (e) {
       throw Exception('카드 정보를 가져오는 데 실패했습니다: $e');
     }
@@ -18,8 +17,7 @@ class CardRepository {
 
   Future<List<CardModel>> fetchAllCards() async {
     try {
-      final response = await apiService.getCards("2");
-      return response.data;
+      return await apiService.getCards("Charizard", "1", "2");
     } catch (e) {
       throw Exception('카드 정보를 가져오는 데 실패했습니다: $e');
     }
