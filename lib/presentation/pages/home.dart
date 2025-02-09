@@ -20,7 +20,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> fetchCard() async {
-    card = await cardService.getCard();
+    List<CardModel> cards = await cardService.getCards(
+      name: 'Charizard',
+      cardRarity: CardRarity.fourDiamond,
+    );
+    card = cards.firstOrNull;
     setState(() {});
   }
 

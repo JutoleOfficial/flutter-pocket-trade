@@ -10,8 +10,25 @@ class CardService {
 
   late final CardRepository cardRepository;
 
-  Future<CardModel?> getCard() async {
-    final cards = await cardRepository.fetchAllCards();
-    return cards.firstOrNull;
+  Future<CardModel> getCard(String id) async {
+    return await cardRepository.fetchCardById(id);
+  }
+
+  Future<List<CardModel>> getCards({
+    required String name,
+    required CardRarity cardRarity,
+    bool? suffix,
+    String? hp,
+    String? page,
+    String? pageSize,
+  }) async {
+    return await cardRepository.fetchAllCards(
+      name: name,
+      cardRarity: cardRarity,
+      suffix: suffix,
+      hp: hp,
+      page: page,
+      pageSize: pageSize,
+    );
   }
 }

@@ -21,7 +21,10 @@ abstract class ApiService {
   })
   Future<List<CardModel>> getCards(
     @Query('name') String name,
-    @Query('pagination:page') String page,
-    @Query('pagination:itemsPerPage') String pageSize,
+    @Query('rarity') String rarity,
+    @Query('suffix') String? suffix,
+    @Query('hp') String? hp,
+    @Query('pagination:page') String? page,
+    @Query('pagination:itemsPerPage') String? pageSize,
   );
 }
