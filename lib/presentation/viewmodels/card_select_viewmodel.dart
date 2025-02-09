@@ -8,5 +8,12 @@ class CardSelectViewModel extends ChangeNotifier {
     ..getCards(
       name: "Eevee",
       rarity: CardRarity.oneDiamond,
+      pageSize: "3",
     );
+
+  @override
+  void dispose() {
+    selectedCards.dispose();
+    super.dispose();
+  }
 }

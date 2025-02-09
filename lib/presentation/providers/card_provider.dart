@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_trade/core/base/view_state.dart';
 import 'package:pocket_trade/data/models/card_model.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
 
@@ -7,7 +8,8 @@ class CardProvider extends ChangeNotifier {
 
   CardProvider(this.cardService);
 
-  final List<CardModel> _cards = [];
+  BaseState<List<CardModel>> _cards = BaseState.loading();
+  BaseState<List<CardModel>> get cards => _cards;
 
   Future<void> getCards({
     required String name,
@@ -26,17 +28,24 @@ class CardProvider extends ChangeNotifier {
       pageSize: pageSize,
     );
 
-    _cards.clear();
-    _cards.addAll(response);
+    _cards = BaseState.success(response);
+    notifyListeners();
   }
 
   void addCard(CardModel card) {
-    _cards.add(card);
-    notifyListeners();
+    if (_cards.isSuccess) {
+      final updatedCards = [..._cards.data!, card];
+      _cards = BaseState.success(updatedCards);
+      notifyListeners();
+    }
   }
 
   void removeCard(CardModel card) {
-    _cards.remove(card);
-    notifyListeners();
+    if (_cards.isSuccess) {
+      final updatedCards =
+          _cards.data!.where((element) => element != card).toList();
+      _cards = BaseState.success(updatedCards);
+      notifyListeners();
+    }
   }
 }

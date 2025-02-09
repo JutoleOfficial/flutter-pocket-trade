@@ -38,7 +38,7 @@ dependencies:
   retrofit: ^4.4.2
   json_annotation: ^4.9.0
   google_fonts: ^6.2.1
-  flutter_riverpod: ^2.6.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
