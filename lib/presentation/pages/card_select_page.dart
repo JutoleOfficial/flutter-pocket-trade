@@ -7,10 +7,9 @@ class CardSelectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      useSafeArea: true,
       body: Column(
         children: [
-          Text("Asdd"),
+          Text("asd"),
         ],
       ),
     );
