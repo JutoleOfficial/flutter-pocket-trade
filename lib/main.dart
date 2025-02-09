@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_trade/presentation/pages/home.dart';
+import 'package:pocket_trade/presentation/pages/card_select_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
-        child: HomePage(),
+        child: CardSelectPage(),
       ),
     );
   }
