@@ -17,8 +17,11 @@ class CardModel {
 
   Map<String, dynamic> toJson() => _$CardModelToJson(this);
 
-  //실제 사용할 이미지 URL
+  //낮은 화질의 이미지 URL
   String get imageUrl => "$image/low.webp";
+
+  //높은 화질의 이미지 URL
+  String get imageHighUrl => "$image/high.webp";
 }
 
 enum CardRarity {
