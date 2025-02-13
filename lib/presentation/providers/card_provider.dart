@@ -8,7 +8,7 @@ class CardProvider extends ChangeNotifier {
 
   CardProvider(this.cardService);
 
-  BaseState<List<CardModel>> _cards = BaseState.loading();
+  BaseState<List<CardModel>> _cards = BaseState.initial();
   BaseState<List<CardModel>> get cards => _cards;
 
   Future<void> getCards({
@@ -19,14 +19,18 @@ class CardProvider extends ChangeNotifier {
     String? page,
     String? pageSize,
   }) async {
-    final response = await cardService.getCards(
-      name: name,
-      cardRarity: rarity,
-      suffix: suffix,
-      hp: hp,
-      page: page,
-      pageSize: pageSize,
-    );
+    final List<CardModel> response = [];
+
+    try {
+      response.addAll(await cardService.getCards(
+        name: name,
+        cardRarity: rarity,
+      ));
+    } catch (e) {
+      _cards = BaseState.error(e.toString());
+      notifyListeners();
+      return;
+    }
 
     _cards = BaseState.success(response);
     notifyListeners();
@@ -38,6 +42,13 @@ class CardProvider extends ChangeNotifier {
       _cards = BaseState.success(updatedCards);
       notifyListeners();
     }
+  }
+
+  void addCards(List<CardModel> cards) {
+    final updatedCards =
+        _cards.data != null ? [..._cards.data!, ...cards] : [...cards];
+    _cards = BaseState.success(updatedCards);
+    notifyListeners();
   }
 
   void removeCard(CardModel card) {

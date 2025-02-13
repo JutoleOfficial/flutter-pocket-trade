@@ -11,9 +11,14 @@ class CardDetailDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      child: Image.network(
-        card.imageUrl,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Dialog(
+        child: Image.network(
+          card.imageUrl,
+        ),
       ),
     );
   }

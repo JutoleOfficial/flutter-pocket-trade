@@ -17,12 +17,14 @@ class CardModel {
 
   Map<String, dynamic> toJson() => _$CardModelToJson(this);
 
-  //실제 사용할 이미지 URL
+  //낮은 화질의 이미지 URL
   String get imageUrl => "$image/low.webp";
+
+  //높은 화질의 이미지 URL
+  String get imageHighUrl => "$image/high.webp";
 }
 
 enum CardRarity {
-  none,
   oneDiamond,
   twoDiamond,
   threeDiamond,
@@ -35,8 +37,6 @@ enum CardRarity {
   @override
   String toString() {
     switch (this) {
-      case CardRarity.none:
-        return "None";
       case CardRarity.oneDiamond:
         return "One Diamond";
       case CardRarity.twoDiamond:
@@ -55,4 +55,53 @@ enum CardRarity {
         return "Crown";
     }
   }
+
+  int get count {
+    switch (this) {
+      case CardRarity.oneDiamond:
+        return 1;
+      case CardRarity.twoDiamond:
+        return 2;
+      case CardRarity.threeDiamond:
+        return 3;
+      case CardRarity.fourDiamond:
+        return 4;
+      case CardRarity.oneStar:
+        return 1;
+      case CardRarity.twoStar:
+        return 2;
+      case CardRarity.threeStar:
+        return 3;
+      case CardRarity.crown:
+        return 1;
+    }
+  }
+
+  bool get isDiamond {
+    return this == CardRarity.oneDiamond ||
+        this == CardRarity.twoDiamond ||
+        this == CardRarity.threeDiamond ||
+        this == CardRarity.fourDiamond;
+  }
+
+  bool get isStar {
+    return this == CardRarity.oneStar ||
+        this == CardRarity.twoStar ||
+        this == CardRarity.threeStar;
+  }
+
+  bool get isCrown {
+    return this == CardRarity.crown;
+  }
+
+  static List<CardRarity> get all => [
+        oneDiamond,
+        twoDiamond,
+        threeDiamond,
+        fourDiamond,
+        oneStar,
+        twoStar,
+        threeStar,
+        crown,
+      ];
 }
