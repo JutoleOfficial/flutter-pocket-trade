@@ -109,7 +109,21 @@ class CardSearchBottomSheet {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          await context
+                              .read<CardSearchBottomSheetViewModel>()
+                              .searchCards();
+                          if (!context.mounted) return;
+
+                          final cards = context
+                              .read<CardSearchBottomSheetViewModel>()
+                              .cards;
+
+                          if (cards.isSuccess) {
+                            onSearchComplete(cards.data!);
+                            Navigator.of(context).pop();
+                          } else if (cards.isError) {}
+                        },
                         child: Container(
                           height: 50,
                           width: 200,

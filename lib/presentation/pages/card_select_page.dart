@@ -36,11 +36,6 @@ class CardSelectPage extends StatelessWidget {
                     final selectedCards = context
                         .select((CardProvider provider) => provider.cards);
 
-                    if (selectedCards.isLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
                     if (selectedCards.isSuccess) {
                       return GridView.builder(
                         shrinkWrap: true,
@@ -72,17 +67,12 @@ class CardSelectPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 ChangeNotifierProvider.value(
-                  value: context.read<CardSelectViewModel>().selectedCards,
+                  value: context.read<CardSelectViewModel>().searchCards,
                   builder: (context, child) {
-                    final selectedCards = context
+                    final searchCards = context
                         .select((CardProvider provider) => provider.cards);
 
-                    if (selectedCards.isLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    if (selectedCards.isSuccess) {
+                    if (searchCards.isSuccess) {
                       return Expanded(
                         child: GridView.builder(
                           gridDelegate:
@@ -91,10 +81,10 @@ class CardSelectPage extends StatelessWidget {
                             childAspectRatio: 0.715,
                             crossAxisSpacing: 8,
                           ),
-                          itemCount: selectedCards.data!.length,
+                          itemCount: searchCards.data!.length,
                           itemBuilder: (context, index) {
                             return CardItem(
-                              card: selectedCards.data![index],
+                              card: searchCards.data![index],
                               onTap: (card) {
                                 CardDetailDialog(card: card).show(context);
                               },
@@ -103,7 +93,7 @@ class CardSelectPage extends StatelessWidget {
                         ),
                       );
                     }
-                    if (selectedCards.isError) {
+                    if (searchCards.isError) {
                       return const Center(
                         child: Text("오류가 발생했습니다."),
                       );
@@ -118,7 +108,9 @@ class CardSelectPage extends StatelessWidget {
             onPressed: () {
               CardSearchBottomSheet(
                 cardService: CardService(),
-              ).show(context, onSearchComplete: (cards) {});
+              ).show(context, onSearchComplete: (cards) {
+                context.read<CardSelectViewModel>().searchCards.addCards(cards);
+              });
             },
             child: Icon(Icons.search),
           ),
