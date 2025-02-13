@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/theme/app_text_styles.dart';
+import 'package:pocket_trade/domain/services/card_service.dart';
 import 'package:pocket_trade/presentation/base/base_scaffold.dart';
 import 'package:pocket_trade/presentation/modals/card_detail_dialog.dart';
 import 'package:pocket_trade/presentation/modals/card_search_bottom_sheet.dart';
@@ -115,7 +116,9 @@ class CardSelectPage extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              CardSearchBottomSheet.show(context);
+              CardSearchBottomSheet(
+                cardService: CardService(),
+              ).show(context, onSearchComplete: (cards) {});
             },
             child: Icon(Icons.search),
           ),
