@@ -60,20 +60,23 @@ class CardSearchBottomSheet {
                         GridView.builder(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
                             childAspectRatio: 2.3,
                             mainAxisSpacing: 12,
                             crossAxisSpacing: 12,
                           ),
                           itemBuilder: (context, index) {
-                            return _buildRarityItem(rarities[index]);
+                            return _buildRarityItem(
+                              context,
+                              rarity: rarities[index],
+                            );
                           },
                           itemCount: rarities.length,
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                           'EX',
                           style: TextStyle(
@@ -192,28 +195,45 @@ class CardSearchBottomSheet {
     );
   }
 
-  Widget _buildRarityItem(CardRarity rarity) {
+  Widget _buildRarityItem(
+    BuildContext context, {
+    required CardRarity rarity,
+  }) {
+    final viewModel = context.read<CardSearchBottomSheetViewModel>();
+
     final icon = rarity.isDiamond
         ? Icons.diamond
         : rarity.isStar
             ? Icons.star
             : Icons.music_note;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[400],
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(
-          rarity.count,
-          (index) => Icon(
-            icon,
-            size: 16,
+    return Selector<CardSearchBottomSheetViewModel, CardRarity?>(
+      selector: (context, viewModel) {
+        return viewModel.cardRarity;
+      },
+      builder: (context, value, child) {
+        return GestureDetector(
+          onTap: () {
+            viewModel.cardRarity = rarity;
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: value == rarity ? Colors.indigo : Colors.grey[400],
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                rarity.count,
+                (index) => Icon(
+                  icon,
+                  size: 16,
+                ),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

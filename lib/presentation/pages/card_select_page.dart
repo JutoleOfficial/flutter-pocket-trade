@@ -79,6 +79,7 @@ class CardSelectPage extends StatelessWidget {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             childAspectRatio: 0.715,
+                            mainAxisSpacing: 16,
                             crossAxisSpacing: 8,
                           ),
                           itemCount: searchCards.data!.length,

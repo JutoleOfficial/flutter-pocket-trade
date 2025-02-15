@@ -17,6 +17,15 @@ class CardSearchBottomSheetViewModel extends ChangeNotifier {
 
   CardRarity? get cardRarity => _cardRarity;
 
+  set cardRarity(CardRarity? value) {
+    if (_cardRarity == value) {
+      _cardRarity = null;
+    } else {
+      _cardRarity = value;
+    }
+    notifyListeners();
+  }
+
   Future<void> searchCards() async {
     if (!_validateParams()) return;
 
@@ -25,7 +34,6 @@ class CardSearchBottomSheetViewModel extends ChangeNotifier {
     try {
       final cards = await cardService.getCards(
         params: CardSearchParams(
-          name: 'Pachirisu',
           cardRarity: _cardRarity!,
         ),
       );
