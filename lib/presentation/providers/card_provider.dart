@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/base/view_state.dart';
 import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/params/card_search_params.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
 
 class CardProvider extends ChangeNotifier {
@@ -12,20 +13,12 @@ class CardProvider extends ChangeNotifier {
   BaseState<List<CardModel>> get cards => _cards;
 
   Future<void> getCards({
-    required String name,
-    required CardRarity rarity,
-    bool? suffix,
-    String? hp,
-    String? page,
-    String? pageSize,
+    required CardSearchParams params,
   }) async {
     final List<CardModel> response = [];
 
     try {
-      response.addAll(await cardService.getCards(
-        name: name,
-        cardRarity: rarity,
-      ));
+      response.addAll(await cardService.getCards(params: params));
     } catch (e) {
       _cards = BaseState.error(e.toString());
       notifyListeners();

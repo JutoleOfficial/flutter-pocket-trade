@@ -39,6 +39,7 @@ dependencies:
   json_annotation: ^4.9.0
   google_fonts: ^6.2.1
   provider: ^6.1.2
+  logger: ^2.5.0
 
 dev_dependencies:
   flutter_test:

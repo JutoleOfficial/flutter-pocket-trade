@@ -30,9 +30,7 @@ enum CardRarity {
   threeDiamond,
   fourDiamond,
   oneStar,
-  twoStar,
-  threeStar,
-  crown;
+  ;
 
   @override
   String toString() {
@@ -47,12 +45,6 @@ enum CardRarity {
         return "Four Diamond";
       case CardRarity.oneStar:
         return "One Star";
-      case CardRarity.twoStar:
-        return "Two Star";
-      case CardRarity.threeStar:
-        return "Three Star";
-      case CardRarity.crown:
-        return "Crown";
     }
   }
 
@@ -68,12 +60,6 @@ enum CardRarity {
         return 4;
       case CardRarity.oneStar:
         return 1;
-      case CardRarity.twoStar:
-        return 2;
-      case CardRarity.threeStar:
-        return 3;
-      case CardRarity.crown:
-        return 1;
     }
   }
 
@@ -85,13 +71,7 @@ enum CardRarity {
   }
 
   bool get isStar {
-    return this == CardRarity.oneStar ||
-        this == CardRarity.twoStar ||
-        this == CardRarity.threeStar;
-  }
-
-  bool get isCrown {
-    return this == CardRarity.crown;
+    return this == CardRarity.oneStar;
   }
 
   static List<CardRarity> get all => [
@@ -100,8 +80,5 @@ enum CardRarity {
         threeDiamond,
         fourDiamond,
         oneStar,
-        twoStar,
-        threeStar,
-        crown,
       ];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/base/view_state.dart';
 import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/params/card_search_params.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
 
 class CardSearchBottomSheetViewModel extends ChangeNotifier {
@@ -17,8 +18,10 @@ class CardSearchBottomSheetViewModel extends ChangeNotifier {
     notifyListeners();
     try {
       final cards = await cardService.getCards(
-        name: 'Pachirisu',
-        cardRarity: CardRarity.fourDiamond,
+        params: CardSearchParams(
+          name: 'Pachirisu',
+          cardRarity: CardRarity.fourDiamond,
+        ),
       );
       _cards = BaseState.success(cards);
       notifyListeners();

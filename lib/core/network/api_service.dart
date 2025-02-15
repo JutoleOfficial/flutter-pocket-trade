@@ -20,7 +20,7 @@ abstract class ApiService {
     'Content-Type': 'application/json',
   })
   Future<List<CardModel>> getCards(
-    @Query('name') String name,
+    @Query('name') String? name,
     @Query('rarity') String rarity,
     @Query('suffix') String? suffix,
     @Query('hp') String? hp,
