@@ -87,6 +87,12 @@ class CardSelectPage extends StatelessWidget {
                             return CardItem(
                               card: searchCards.data![index],
                               onTap: (card) {
+                                context
+                                    .read<CardSelectViewModel>()
+                                    .selectedCards
+                                    .addCard(card);
+                              },
+                              onLongPress: (card) {
                                 CardDetailDialog(card: card).show(context);
                               },
                             );

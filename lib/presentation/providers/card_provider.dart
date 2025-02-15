@@ -30,11 +30,13 @@ class CardProvider extends ChangeNotifier {
   }
 
   void addCard(CardModel card) {
-    if (_cards.isSuccess) {
-      final updatedCards = [..._cards.data!, card];
-      _cards = BaseState.success(updatedCards);
-      notifyListeners();
+    if (_cards.data?.contains(card) ?? false) {
+      return;
     }
+
+    final updatedCards = _cards.data != null ? [..._cards.data!, card] : [card];
+    _cards = BaseState.success(updatedCards);
+    notifyListeners();
   }
 
   void addCards(List<CardModel> cards) {
