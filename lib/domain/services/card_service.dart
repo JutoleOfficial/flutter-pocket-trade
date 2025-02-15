@@ -1,6 +1,7 @@
 import 'package:pocket_trade/core/network/api_client.dart';
 import 'package:pocket_trade/data/models/card_model.dart';
 import 'package:pocket_trade/data/repositories/card_repository.dart';
+import 'package:pocket_trade/domain/params/card_search_params.dart';
 
 class CardService {
   CardService() {
@@ -15,20 +16,10 @@ class CardService {
   }
 
   Future<List<CardModel>> getCards({
-    required String name,
-    required CardRarity cardRarity,
-    bool? suffix,
-    String? hp,
-    String? page,
-    String? pageSize,
+    required CardSearchParams params,
   }) async {
     return await cardRepository.fetchAllCards(
-      name: name,
-      cardRarity: cardRarity,
-      suffix: suffix,
-      hp: hp,
-      page: page,
-      pageSize: pageSize,
+      params: params,
     );
   }
 }

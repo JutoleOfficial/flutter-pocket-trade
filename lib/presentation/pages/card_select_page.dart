@@ -79,6 +79,7 @@ class CardSelectPage extends StatelessWidget {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             childAspectRatio: 0.715,
+                            mainAxisSpacing: 16,
                             crossAxisSpacing: 8,
                           ),
                           itemCount: searchCards.data!.length,
@@ -86,6 +87,12 @@ class CardSelectPage extends StatelessWidget {
                             return CardItem(
                               card: searchCards.data![index],
                               onTap: (card) {
+                                context
+                                    .read<CardSelectViewModel>()
+                                    .selectedCards
+                                    .addCard(card);
+                              },
+                              onLongPress: (card) {
                                 CardDetailDialog(card: card).show(context);
                               },
                             );
