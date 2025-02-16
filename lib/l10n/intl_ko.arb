@@ -1,0 +1,8 @@
+{
+    "@@locale": "ko",
+    "enterPokemonName": "포켓몬 이름을 입력하세요",
+    "rarity": "레어도",
+    "search": "검색",
+    "searchPokemons": "검색한 포켓몬",
+    "selectedPokemons": "선택된 포켓몬"
+}

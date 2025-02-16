@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/theme/app_text_styles.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
+import 'package:pocket_trade/generated/l10n.dart';
 import 'package:pocket_trade/presentation/base/base_scaffold.dart';
 import 'package:pocket_trade/presentation/modals/card_detail_dialog.dart';
 import 'package:pocket_trade/presentation/modals/card_search_bottom_sheet.dart';
@@ -26,7 +27,7 @@ class CardSelectPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 16),
                 Text(
-                  "선택된 포켓몬",
+                  S.of(context).selectedPokemons,
                   style: AppTextStyle.style18Bold,
                 ),
                 const SizedBox(height: 8),
@@ -52,17 +53,12 @@ class CardSelectPage extends StatelessWidget {
                         },
                       );
                     }
-                    if (selectedCards.isError) {
-                      return const Center(
-                        child: Text("오류가 발생했습니다."),
-                      );
-                    }
                     return const SizedBox.shrink();
                   },
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  "검색한 포켓몬",
+                  S.of(context).searchPokemons,
                   style: AppTextStyle.style18Bold,
                 ),
                 const SizedBox(height: 8),
@@ -100,11 +96,7 @@ class CardSelectPage extends StatelessWidget {
                         ),
                       );
                     }
-                    if (searchCards.isError) {
-                      return const Center(
-                        child: Text("오류가 발생했습니다."),
-                      );
-                    }
+
                     return const SizedBox.shrink();
                   },
                 ),
