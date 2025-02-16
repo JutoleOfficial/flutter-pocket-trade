@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/base/view_state.dart';
 import 'package:pocket_trade/data/models/card_model.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
+import 'package:pocket_trade/generated/l10n.dart';
 import 'package:pocket_trade/presentation/viewmodels/card_search_bottom_sheet_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -45,18 +46,19 @@ class CardSearchBottomSheet {
                             ),
                           ),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         TextField(
-                          decoration:
-                              InputDecoration(hintText: '포켓몬 이름을 입력하세요'),
+                          decoration: InputDecoration(
+                            hintText: S.of(context).enterPokemonName,
+                          ),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
-                          '레어도',
-                          style: TextStyle(
+                          S.of(context).rarity,
+                          style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         GridView.builder(
                           shrinkWrap: true,
                           padding: EdgeInsets.zero,
@@ -82,7 +84,7 @@ class CardSearchBottomSheet {
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         GestureDetector(
                           onTap: () {},
                           child: Container(
@@ -100,7 +102,7 @@ class CardSearchBottomSheet {
                             ),
                           ),
                         ),
-                        SizedBox(height: 166),
+                        const SizedBox(height: 160),
                       ],
                     ),
                   ),
@@ -135,11 +137,11 @@ class CardSearchBottomSheet {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Center(
-                            child: Text('검색'),
+                            child: Text(S.of(context).search),
                           ),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
@@ -151,7 +153,7 @@ class CardSearchBottomSheet {
                             color: Colors.indigo,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Icon(Icons.close),
                           ),
                         ),
@@ -184,7 +186,7 @@ class CardSearchBottomSheet {
                       );
                     }
 
-                    return SizedBox.shrink();
+                    return const SizedBox.shrink();
                   },
                 ),
               ],
