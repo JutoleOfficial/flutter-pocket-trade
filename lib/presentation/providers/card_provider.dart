@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/base/view_state.dart';
-import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/entities/card_entity.dart';
 import 'package:pocket_trade/domain/params/card_search_params.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
 
@@ -9,13 +9,13 @@ class CardProvider extends ChangeNotifier {
 
   CardProvider(this.cardService);
 
-  BaseState<List<CardModel>> _cards = BaseState.initial();
-  BaseState<List<CardModel>> get cards => _cards;
+  BaseState<List<CardEntity>> _cards = BaseState.initial();
+  BaseState<List<CardEntity>> get cards => _cards;
 
   Future<void> getCards({
     required CardSearchParams params,
   }) async {
-    final List<CardModel> response = [];
+    final List<CardEntity> response = [];
 
     try {
       response.addAll(await cardService.getCards(params: params));
@@ -29,7 +29,7 @@ class CardProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addCard(CardModel card) {
+  void addCard(CardEntity card) {
     if (_cards.data?.contains(card) ?? false) {
       return;
     }
@@ -39,14 +39,14 @@ class CardProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addCards(List<CardModel> cards) {
+  void addCards(List<CardEntity> cards) {
     final updatedCards =
         _cards.data != null ? [..._cards.data!, ...cards] : [...cards];
     _cards = BaseState.success(updatedCards);
     notifyListeners();
   }
 
-  void removeCard(CardModel card) {
+  void removeCard(CardEntity card) {
     if (_cards.isSuccess) {
       final updatedCards =
           _cards.data!.where((element) => element != card).toList();

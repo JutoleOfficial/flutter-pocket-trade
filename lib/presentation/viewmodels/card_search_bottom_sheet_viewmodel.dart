@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/base/view_state.dart';
-import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/entities/card_entity.dart';
 import 'package:pocket_trade/domain/params/card_search_params.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
 
@@ -9,9 +9,9 @@ class CardSearchBottomSheetViewModel extends ChangeNotifier {
 
   CardSearchBottomSheetViewModel({required this.cardService});
 
-  BaseState<List<CardModel>> _cards = BaseState.initial();
+  BaseState<List<CardEntity>> _cards = BaseState.initial();
 
-  BaseState<List<CardModel>> get cards => _cards;
+  BaseState<List<CardEntity>> get cards => _cards;
 
   CardRarity? _cardRarity;
 
