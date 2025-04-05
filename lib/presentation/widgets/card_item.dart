@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/entities/card_entity.dart';
 
 class CardItem extends StatelessWidget {
-  final CardModel card;
-  final void Function(CardModel card)? onTap;
-  final void Function(CardModel card)? onLongPress;
-  final void Function(CardModel card)? onDoubleTap;
+  final CardEntity card;
+  final void Function(CardEntity card)? onTap;
+  final void Function(CardEntity card)? onLongPress;
+  final void Function(CardEntity card)? onDoubleTap;
 
   const CardItem({
     super.key,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/entities/card_entity.dart';
 
 class CardDetailDialog extends StatelessWidget {
-  final CardModel card;
+  final CardEntity card;
 
   const CardDetailDialog({
     required this.card,

@@ -1,4 +1,4 @@
-import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/entities/card_entity.dart';
 
 class CardSearchParams {
   final String? name;

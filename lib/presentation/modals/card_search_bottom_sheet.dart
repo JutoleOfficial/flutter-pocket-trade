@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_trade/core/base/view_state.dart';
-import 'package:pocket_trade/data/models/card_model.dart';
+import 'package:pocket_trade/domain/entities/card_entity.dart';
 import 'package:pocket_trade/domain/services/card_service.dart';
 import 'package:pocket_trade/generated/l10n.dart';
 import 'package:pocket_trade/presentation/viewmodels/card_search_bottom_sheet_viewmodel.dart';
@@ -13,7 +13,7 @@ class CardSearchBottomSheet {
 
   void show(
     BuildContext context, {
-    required void Function(List<CardModel> cards) onSearchComplete,
+    required void Function(List<CardEntity> cards) onSearchComplete,
   }) {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
@@ -163,13 +163,13 @@ class CardSearchBottomSheet {
                   ),
                 ),
                 Selector<CardSearchBottomSheetViewModel,
-                    BaseState<List<CardModel>>>(
+                    BaseState<List<CardEntity>>>(
                   selector: (context, viewModel) {
                     return viewModel.cards;
                   },
                   builder: (context, value, child) {
                     if (value.isLoading) {
-                      return Positioned(
+                      return const Positioned(
                         bottom: 0,
                         top: 0,
                         left: 0,
