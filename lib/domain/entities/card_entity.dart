@@ -1,23 +1,23 @@
 import 'package:pocket_trade/data/models/card_model.dart';
 
 class CardEntity {
-  final String id;
-  final String image;
-
-  CardEntity({required this.id, required this.image});
+  CardEntity({
+    required this.id,
+    required this.imageUrl,
+    required this.imageHighUrl,
+  });
 
   factory CardEntity.fromModel(CardModel model) {
     return CardEntity(
       id: model.id,
-      image: model.image,
+      imageUrl: "${model.image}/low.webp",
+      imageHighUrl: "${model.image}/high.webp",
     );
   }
 
-  //낮은 화질의 이미지 URL
-  String get imageUrl => "$image/low.webp";
-
-  //높은 화질의 이미지 URL
-  String get imageHighUrl => "$image/high.webp";
+  final String id;
+  final String imageUrl;
+  final String imageHighUrl;
 }
 
 enum CardRarity {
